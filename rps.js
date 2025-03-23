@@ -20,9 +20,14 @@ function getComputerChoice() {
     return answer;
 }
 
-console.log(getComputerChoice());
-console.log(getComputerChoice());
-console.log(getComputerChoice());
+function getHumanChoice() {
+    let answer = prompt("rock, paper or scissors?");
+    return answer;
+}
+
+console.log(getHumanChoice());
+console.log(getHumanChoice());
+console.log(getHumanChoice());
 console.log(getComputerChoice());
 console.log(getComputerChoice());
 console.log(getComputerChoice());
