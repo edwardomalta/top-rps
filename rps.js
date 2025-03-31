@@ -73,10 +73,6 @@ function playGame() {
 
     }
 
-    for(i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
-        score();
-    }
     // Ahora comparamos resultados
 
     if (humanScore > computerScore) {
