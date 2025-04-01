@@ -17,12 +17,20 @@ buttons.forEach((button) => {
     });
 });
 
+const results = document.querySelector(".result");
+
 let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-    console.log("Human choice: " + humanChoice);
-    console.log("Computer choice: " + computerChoice);
+    let player1 = document.createElement("p");
+    let player2 = document.createElement("p");
+    player1.textContent = "Human choice: " + humanChoice
+    player2.textContent = "Computer choice: " + computerChoice
+
+    results.appendChild(player1);
+    results.appendChild(player2);
+    
     if (humanChoice == "rock") {
         if (computerChoice == "rock") return "Draw!";
         else if (computerChoice == "paper") {
