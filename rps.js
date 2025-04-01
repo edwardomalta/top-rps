@@ -10,17 +10,30 @@
  */
 
 const buttons = document.querySelectorAll("button");
+const results = document.querySelector(".result");
+const scores = document.querySelectorAll(".points");
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        playRound(button.id, getComputerChoice());
+        let winner = playRound(button.id, getComputerChoice());
+        const para = document.createElement("p");
+        para.textContent = winner;
+        results.appendChild(para);
     });
 });
 
-const results = document.querySelector(".result");
 
 let humanScore = 0;
 let computerScore = 0;
+
+function updateScores() {
+    scores[0].textContent = humanScore;
+    scores[1].textContent = computerScore;
+    if (humanScore > 4 || computerScore > 4) {
+        winner = humanScore < 5 ? "computer" : "human"
+        alert(`Winner is: ${winner}`);
+    }
+}
 
 function playRound(humanChoice, computerChoice) {
     let player1 = document.createElement("p");
@@ -30,14 +43,18 @@ function playRound(humanChoice, computerChoice) {
 
     results.appendChild(player1);
     results.appendChild(player2);
-    
+
     if (humanChoice == "rock") {
-        if (computerChoice == "rock") return "Draw!";
-        else if (computerChoice == "paper") {
+        if (computerChoice == "rock") {
+            updateScores();
+            return "Draw!";
+        } else if (computerChoice == "paper") {
             computerScore++;
+            updateScores();
             return "Computer wins!";
         } else if (computerChoice == "scissors") {
             humanScore++;
+            updateScores();
             return "Human wins!"
         }
     }
@@ -45,9 +62,11 @@ function playRound(humanChoice, computerChoice) {
         if (computerChoice == "paper") return "Draw!";
         else if (computerChoice == "scissors") {
             computerScore++;
+            updateScores();
             return "Computer wins!";
         } else if (computerChoice == "rock") {
             humanScore++;
+            updateScores();
             return "Human wins!"
         }
     }
@@ -55,9 +74,11 @@ function playRound(humanChoice, computerChoice) {
         if (computerChoice == "scissors") return "Draw!";
         else if (computerChoice == "rock") {
             computerScore++;
+            updateScores();
             return "Computer wins!";
         } else if (computerChoice == "paper") {
             humanScore++;
+            updateScores();
             return "Human wins!"
         }
     }
