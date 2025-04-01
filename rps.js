@@ -9,10 +9,18 @@
     asignar a respuesta r. si se elije 0, retornar p. si se elije 1, retornar s. si se elije 2;
  */
 
+const buttons = document.querySelectorAll("button");
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        playGame(button.id);
+    });
+});
+
+let humanScore = 0;
+let computerScore = 0;
+
+function playGame(btnChoice) {
     
     function getComputerChoice() {
         let answer;
@@ -25,14 +33,9 @@ function playGame() {
         return answer;
     }
     
-    function getHumanChoice() {
-        let answer = prompt("rock, paper or scissors?");
-        return answer;
-    }
-    
     function playRound(humanChoice, computerChoice) {
-        console.log(humanChoice);
-        console.log(computerChoice);
+        console.log("Human choice: " + humanChoice);
+        console.log("Computer choice: " + computerChoice);
         if (humanChoice == "rock") {
             if (computerChoice == "rock") return "Draw!";
             else if (computerChoice == "paper") {
@@ -73,11 +76,14 @@ function playGame() {
 
     }
 
+    playRound(btnChoice, getComputerChoice());
+    score();
+
     // Ahora comparamos resultados
 
-    if (humanScore > computerScore) {
+    if (humanScore > 5) {
         console.log('Congrats! you have won this match!');
-    } else {
+    } else if (computerScore > 5) {
         console.log('YOU LOSE the match!');
-    }
+    } else if (!(humanScore < 5) && !(computerScore < 5))console.log('We have a tie!');
 }
