@@ -13,61 +13,62 @@ const buttons = document.querySelectorAll("button");
 
 buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        playGame(button.id);
+        playRound(button.id, getComputerChoice());
     });
 });
 
 let humanScore = 0;
 let computerScore = 0;
 
+function playRound(humanChoice, computerChoice) {
+    console.log("Human choice: " + humanChoice);
+    console.log("Computer choice: " + computerChoice);
+    if (humanChoice == "rock") {
+        if (computerChoice == "rock") return "Draw!";
+        else if (computerChoice == "paper") {
+            computerScore++;
+            return "Computer wins!";
+        } else if (computerChoice == "scissors") {
+            humanScore++;
+            return "Human wins!"
+        }
+    }
+    if (humanChoice == "paper") {
+        if (computerChoice == "paper") return "Draw!";
+        else if (computerChoice == "scissors") {
+            computerScore++;
+            return "Computer wins!";
+        } else if (computerChoice == "rock") {
+            humanScore++;
+            return "Human wins!"
+        }
+    }
+    if (humanChoice == "scissors") {
+        if (computerChoice == "scissors") return "Draw!";
+        else if (computerChoice == "rock") {
+            computerScore++;
+            return "Computer wins!";
+        } else if (computerChoice == "paper") {
+            humanScore++;
+            return "Human wins!"
+        }
+    }
+    
+}
+
+function getComputerChoice() {
+    let answer;
+    const choice = Math.floor(Math.random() * 3);
+
+    if (choice === 0 ) answer = "rock";
+    else if (choice === 1) answer = "paper";
+    else if (choice === 2) answer = "scissors";
+    
+    return answer;
+}
+
 function playGame(btnChoice) {
     
-    function getComputerChoice() {
-        let answer;
-        const choice = Math.floor(Math.random() * 3);
-    
-        if (choice === 0 ) answer = "rock";
-        else if (choice === 1) answer = "paper";
-        else if (choice === 2) answer = "scissors";
-        
-        return answer;
-    }
-    
-    function playRound(humanChoice, computerChoice) {
-        console.log("Human choice: " + humanChoice);
-        console.log("Computer choice: " + computerChoice);
-        if (humanChoice == "rock") {
-            if (computerChoice == "rock") return "Draw!";
-            else if (computerChoice == "paper") {
-                computerScore++;
-                return "Computer wins!";
-            } else if (computerChoice == "scissors") {
-                humanScore++;
-                return "Human wins!"
-            }
-        }
-        if (humanChoice == "paper") {
-            if (computerChoice == "paper") return "Draw!";
-            else if (computerChoice == "scissors") {
-                computerScore++;
-                return "Computer wins!";
-            } else if (computerChoice == "rock") {
-                humanScore++;
-                return "Human wins!"
-            }
-        }
-        if (humanChoice == "scissors") {
-            if (computerChoice == "scissors") return "Draw!";
-            else if (computerChoice == "rock") {
-                computerScore++;
-                return "Computer wins!";
-            } else if (computerChoice == "paper") {
-                humanScore++;
-                return "Human wins!"
-            }
-        }
-        
-    }
     
     function score() {
         // Imprimimos el score:
